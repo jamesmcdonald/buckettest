@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bucket Test</title>
+  </head>
+  <body>
+    <style>
+      .form-container {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 0.5rem;
+        align-items: center;
+        max-width: 400px; /* Optional: Adjust based on preference */
+      }
+
+      textarea {
+        height: 100px; /* Adjust as needed */
+      }
+
+      .form-container button {
+        grid-column: span 2; /* Makes the button take the full width */
+      }
+    </style>
+    <h1>Bucket Test</h1>
+
+    <h2>Write Object</h2>
+    <form action="/write" method="post" class="form-container">
+      <label for="path">Path</label>
+      <input type="text" id="path" name="path" required>
+      <label for="content">Content</label>
+      <textarea id="content" name="content" required></textarea>
+      <button type="submit">Write</button>
+    </form>
+
+
+    <h2>Objects</h2>
+    {{ if .Objects }}
+      <ul>
+        {{ range .Objects }}
+        <li><a href="/read?path={{ . }}">{{ . }}</a>
+          <form method="post" action="/delete">
+            <input type="hidden" name="path" value="{{ . }}">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+        {{ end }}
+      </ul>
+    {{ else }}
+      <p>No objects found.</p>
+    {{ end }}
+  
+  </body>
+</html>

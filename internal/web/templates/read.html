@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Object Contents</title>
+  </head>
+  <body>
+    <h1>Object Contents</h1>
+    <a href="/">Back</a>
+    <h2>Object Path</h2>
+    <p>{{ .Path }}</p>
+    <h2>Object Content</h2>
+    <pre>{{ .Content }}</pre>
+    <a href="/delete?path={{ .Path }}">Delete</a>
+  </body>
+</html>
